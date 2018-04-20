@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  test:
+    build: backend
+    command: npm test
+    environment:
+      - NODE_ENV=test
