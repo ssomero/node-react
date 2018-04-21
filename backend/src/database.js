@@ -4,7 +4,7 @@ const config = require('../src/config')[process.env.NODE_ENV];
 /** INIT DATABASE * */
 
 const sequelize = (config.use_env_variable)
-  ? new Sequelize(process.env[config.use_env_variable], config)
+  ? new Sequelize(config.use_env_variable, config)
   : new Sequelize(config);
 
 const Greeting = sequelize.define('greetings', {

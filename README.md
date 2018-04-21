@@ -18,7 +18,7 @@ Example template for node-react app that can be built in Travis CI and deployed 
 To run containers in detached mode, use `docker-compose up -d`  
 If you want to run only some of the containers, specify containers, for example `docker-compose up backend db`
 - `docker ps -a` to check which containers are running and in which ports
-- backend is served in `localhost:9000` (example api in `localhost:9000/api/v1/hello/world`)
+- backend is served in `localhost:9000` (example api in `localhost:9000/api/greetings`)
 - frontend is served in `localhost:8000`
 - db is served localhost:5432
 
