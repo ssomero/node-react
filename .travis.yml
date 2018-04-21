@@ -14,7 +14,7 @@ script:
 - npm install --prefix backend/
 - npm run lint --prefix backend/
 - docker-compose -f docker-compose.test.yml run test
-- cd frontend && npm install && npm run build
+- cd frontend && npm install && npm run build-prod
 - cp src/public/index.html build/
 - mv build/ ../backend/src/
 before_deploy:
