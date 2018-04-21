@@ -1,28 +1,28 @@
 language: nodejs
 nodejs:
-  - "8"
+- '8'
 sudo: required
 services:
-  - docker
+- docker
 branches:
   only:
-    - master
+  - master
 before_install:
-  - nvm install node
-  - docker-compose -f docker-compose.yml -f docker-compose.test.yml build
+- nvm install node
+- docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 script:
-  - npm install --prefix backend/
-  - npm run lint --prefix backend/
-  - docker-compose -f docker-compose.test.yml run test
-  - cd frontend && npm install && npm run build
-  - cp src/public/index.html build/
-  - mv build/ ../backend/src/
-# before_deploy:
-# - cd ../backend
-# deploy:
-#   provider: heroku
-#   skip_cleanup: true
-#   api_key:
-#     secure: your_encrypted_token
-#   on: master
-#   app: 
+- npm install --prefix backend/
+- npm run lint --prefix backend/
+- docker-compose -f docker-compose.test.yml run test
+- cd frontend && npm install && npm run build
+- cp src/public/index.html build/
+- mv build/ ../backend/src/
+before_deploy:
+- cd ../backend
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  api_key:
+    secure: NixtUZzafkZYsMQyKWmeu15V1FQvmOp+Y3SwqO8KdkX2g0r/8jCDVDAyagSp+0TS/J3FUdtFNgM9C+zMex/KgZYuHBFs5CJtIIw7VLnf49AdiRUtwhipoPnvOVC54fdiFIxleaUiUy9YBpKpjYKh4iDMmN7+e6Tlry6tAk5tyGFhftl3vSJU3Gj6qZYE7+Xe9TVN/siZlBqLNtgFCoQSvVxtIhw1TDGFpfVCrrO0GApmiDzLoO3xp6cRbSLdSqDp6n7HQuk8GVte6Y/eduNZGMqaET4UuADXg04bfeezz7xnqT5j+OaW3USIDGyCf+sJrX71eK4JOXiC+nX361kertAAMQfFlRVTkVdAs7sM4cFvHYJd6ekoYnqnY9fJ8HEB62ZH+lsJUIwrp4kutzl9LIGTwQknKgCG4//RhrxZJrpITUsuV6hkQl8n9UzB6JRl2ObqPBDv+LPjWy8jWXOE9ZVk/EmrD7ClVPhP4h8jFrecVgmjcdPGGjy1bL0kIokoYy7II8gA2kzGN1IjEISUkWLhNjlNiotcA30krv55VDmKPdPB7DBx9ZBYT+rm4YH3NoSFNCrP9omAxH2XFR6LIVVO46n6KV9rCs2sIVEIg9T/Rds3sxOIdcKDthtSR7W68PmA0IpJb/TrruLgFEN+lBaY9OeqnjnuKQ4uAUP/RmM=
+  on: master
+  app: shrouded-mesa-55040
