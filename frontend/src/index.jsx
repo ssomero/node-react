@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import './assets/stylesheets/style.css';
+import config from './config';
 
-const baseURL = process.env.ENDPOINT;
+const { baseURL } = config.process.env.NODE_ENV;
 
 const getGreetings = async () => {
   console.log('baseUrl');
