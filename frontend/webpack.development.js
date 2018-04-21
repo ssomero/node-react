@@ -31,6 +31,7 @@ module.exports = {
     new ExtractTextPlugin('[name].[hash:8].css'),
     new webpack.DefinePlugin({
       'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         ENDPOINT: JSON.stringify(process.env.ENDPOINT || 'http://localhost:9000'),
       },
     }),
