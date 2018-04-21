@@ -19,13 +19,14 @@ module.exports = {
   },
   output: {
     path: path.resolve('build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/public/index.html',
       filename: 'index.html',
+      inject: false,
     }),
     new ExtractTextPlugin('[name].[hash:8].css'),
     new webpack.DefinePlugin({
@@ -52,6 +53,6 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }),
       },
-    ]
-  }
-}
+    ],
+  },
+};

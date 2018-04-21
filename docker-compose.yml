@@ -21,7 +21,8 @@ services:
     depends_on:
       - backend
     environment:
-      - ENDPOINT=${ENDPOINT}
+      - NODE_ENV=development
+      - ENDPOINT=http://localhost:9000
   db:
     build: postgres
     volumes:
