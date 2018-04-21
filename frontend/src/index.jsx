@@ -3,16 +3,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import './assets/stylesheets/style.css';
-import config from './config';
 
-console.log(config);
-console.log(process.env);
-const env = process.env.NODE_ENV;
-const baseURL = config[env].baseURL;
+const baseURL = process.env.ENDPOINT;
 const getGreetings = async () => {
-  console.log('baseUrl');
-  console.log(baseURL);
-  console.log(process.env);
   try {
     const url = `${baseURL}/api/greetings`;
     const response = await fetch(url);
