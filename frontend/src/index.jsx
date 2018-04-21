@@ -7,6 +7,9 @@ import './assets/stylesheets/style.css';
 const baseURL = process.env.ENDPOINT;
 
 const getGreetings = async () => {
+  console.log('baseUrl');
+  console.log(baseURL);
+  console.log(process.env);
   try {
     const url = `${baseURL}/api/greetings`;
     const response = await fetch(url);
