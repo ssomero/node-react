@@ -8,8 +8,9 @@ const cors = require('kcors');
 
 const database = require('./database');
 
-/** CREATE AND CONF THE WEB SERVER **/
+/** CREATE AND CONF THE WEB SERVER * */
 
+/* eslint-disable-next-line no-multi-assign */
 const app = module.exports = new Koa();
 
 if (process.env.NODE_ENV !== 'test') {
@@ -19,15 +20,15 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(cors({ credentials: true }));
 app.use(bodyParser());
 
-/** METHODS TO RESPOND TO THE ROUTES **/
+/** METHODS TO RESPOND TO THE ROUTES * */
 
 const listGreetings = async (ctx) => {
-  let options = {};
+  const options = {};
 
-  let result = await database.Greeting.findAll(options);
-  let greetings = await Promise.all(result.map(greeting => greeting.toJSON()));
+  const result = await database.Greeting.findAll(options);
+  const greetings = await Promise.all(result.map(greeting => greeting.toJSON()));
 
-  let response = {
+  const response = {
     results: greetings,
   };
 
@@ -37,13 +38,13 @@ const listGreetings = async (ctx) => {
 const createGreeting = async (ctx) => {
   const params = ctx.request.body;
 
-  const greeting = await database.Greeting.create({message: params.message});
+  const greeting = await database.Greeting.create({ message: params.message });
 
   ctx.body = await greeting.toJSON();
   ctx.status = 201;
 };
 
-/** CONFIGURING THE API ROUTES **/
+/** CONFIGURING THE API ROUTES * */
 
 const publicRouter = new Router({ prefix: '/api' });
 

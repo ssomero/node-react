@@ -1,12 +1,23 @@
 {
+  "plugins": ["node", "mocha"],
   "parser": "babel-eslint",
-  "extends": "standard",
+  "extends": "airbnb-base",
   "env": {
+    "es6": true,
+    "browser": false,
     "node": true,
     "mocha": true
   },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "destructuring": true,
+      "spread": true,
+      "restParams": true
+    }
+  },
   "rules": {
-    "semi": ["error", "always"],
-    "comma-dangle": ["error", "always-multiline"]
+    "no-trailing-spaces" :"error"
   }
 }

@@ -1,17 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies, no-proto, consistent-return  */
 const methods = require('methods');
 const TestAgent = require('supertest').agent;
 const app = require('../src/app');
 
-function Agent (application) {
+function Agent(application) {
   TestAgent.call(this, application);
   this.token = null;
 }
 
-/* eslint-disable no-proto */
 Agent.prototype.__proto__ = TestAgent.prototype;
 
 methods.forEach((method) => {
-  Agent.prototype[method] = function (url, fn) {
+  Agent.prototype[method] = function doRequest(url, fn) {
     const apiUrl = url;
 
     const req = TestAgent.prototype[method].call(this, apiUrl, fn);

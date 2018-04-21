@@ -1,0 +1,17 @@
+{
+    "extends": [
+      "airbnb"
+    ],
+    "plugins": [
+      "react"
+    ],
+    "parser": "babel-eslint",
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "rules": {
+      "no-trailing-spaces": "error"
+    }
+  }
+  

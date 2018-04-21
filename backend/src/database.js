@@ -1,7 +1,7 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 const config = require('../src/config')[process.env.NODE_ENV];
 
-/** INIT DATABASE **/
+/** INIT DATABASE * */
 
 const sequelize = (config.use_env_variable)
   ? new Sequelize(process.env[config.use_env_variable], config)
@@ -12,7 +12,7 @@ const Greeting = sequelize.define('greetings', {
 }, {
   timestamps: true,
   instanceMethods: {
-    toJSON: async function () {
+    async toJSON() {
       return {
         // Id and timestamps are generated automatically
         id: this.id,
@@ -25,8 +25,6 @@ const Greeting = sequelize.define('greetings', {
   },
 });
 
-exports.sync = (options) => {
-  return sequelize.sync(options);
-};
+exports.sync = options => sequelize.sync(options);
 
 exports.Greeting = Greeting;

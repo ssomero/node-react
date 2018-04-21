@@ -2,25 +2,28 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import './assets/stylesheets/style.css'
+import './assets/stylesheets/style.css';
 
 const baseURL = process.env.ENDPOINT;
 
 const getGreetings = async () => {
   try {
-    const url = `${baseURL}/api/greetings`
+    const url = `${baseURL}/api/greetings`;
     const response = await fetch(url);
-    return response.json()
+    return response.json();
   } catch (error) {
+    /* eslint-disable-next-line no-console */
     console.error(error);
   }
-  return { greeting :"Could not get greetings from backend"};
+  return { greeting: 'Could not get greetings from backend' };
 };
 
 
 const Greetings = (props) => {
   const GreetingList = props.greetings.map(c => <li>{c.message}</li>);
-  return <ul>{GreetingList}</ul>; 
+  return (
+    <ul>Greetings {GreetingList}</ul>
+  );
 };
 
 class App extends Component {
@@ -38,5 +41,5 @@ class App extends Component {
 
 ReactDOM.render(
   <App />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
