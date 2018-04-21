@@ -25,7 +25,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        ENDPOINT: JSON.stringify(process.env.ENDPOINT || 'https://shrouded-mesa-55040.herokuapp.com/api'),
+        ENDPOINT: JSON.stringify(process.env.ENDPOINT || 'https://shrouded-mesa-55040.herokuapp.com'),
       },
     }),
   ],
