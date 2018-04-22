@@ -50,7 +50,7 @@ Backend tests can be run simply by `npm run test`, either in the backend contain
 ## ESLint
 Both backend and frontend have configuration for [ESLint](https://eslint.org/). ESLint has integrations for several editors (https://eslint.org/docs/user-guide/integrations), and it's recommended to use such extension, as it makes it easy to detect possible errors. To get it work in your editor, you have to install eslint packages to you local machine (`npm install`, see packages from package.jsons). 
 
-Both backend and frontend use [airbnb-config](https://github.com/airbnb/javascript) (defined in .eslintrc file). It's also possible to use some other configuration, or add rules directly to `.eslintrc` file.
+Both backend and frontend use [airbnb-config](https://github.com/airbnb/javascript) (defined in .eslintrc file). It's also possible to use some other configuration, or add rules directly to `.eslintrc`.
 
 ### Run lint in command line
 It's highly recommended to use ESLint in editor, but if you want to run lint in command line, run (in backend or frontend, in a docker container or locally):
