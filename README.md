@@ -1,5 +1,5 @@
 # node-react with travis and heroku
-Example template for node-react app that can be built in Travis CI and deployed to Heroku. In local development app is running in docker containers. 
+Example template for node-react app that can be built in Travis CI and deployed to Heroku. In local development app is running in docker containers.  
 
 ## Prequisites
 * [docker](https://docs.docker.com/)
@@ -15,8 +15,10 @@ Example template for node-react app that can be built in Travis CI and deployed 
 - Ensure that docker is running, and then in project root dir run:  
 ```docker-compose up```  
 
-To run containers in detached mode, use `docker-compose up -d`  
-If you want to run only some of the containers, specify containers, for example `docker-compose up backend db`
+It reads `docker-compose.yml` and builds, creates, starts, and attaches services to containers (frontend, backend, db). Backend, frontend and db (postgres in this case) have Dockerfiles in root directories. Images are build automatically by reading the instructions from a Dockerfile.
+
+To run containers in detached mode (in the background), use `docker-compose up -d`  
+If you want to start only some of the containers, you can specify containers, for example `docker-compose up backend db`
 - `docker ps -a` to check which containers are running and in which ports
 - backend is served in `localhost:9000` (example api in `localhost:9000/api/greetings`)
 - frontend is served in `localhost:8000`
@@ -40,8 +42,10 @@ If you need to build images, you can use (or with --no-cache flag)
 ### Access to a docker container
 To access eg. backend container, run  
 ```docker-compose exec backend sh```  
-This links the container's bash to your local shell. From there you can i.e. run tests (`npm run test`) or use `npm install`.
+This links the container's bash to your local shell. From there you can i.e. run tests or use add dependencies.
 
+### Running tests
+Backend tests can be run simply by `npm run test`, either in the backend container or in your local machine if you have installed all the dependencies.
 
 ## ESLint
 Both backend and frontend have configuration for [ESLint](https://eslint.org/). ESLint has integrations for several editors (https://eslint.org/docs/user-guide/integrations), and it's recommended to use such extension, as it makes it easy to detect possible errors. To get it work in your editor, you have to install eslint packages to you local machine (`npm install`, see packages from package.jsons). 
@@ -49,7 +53,7 @@ Both backend and frontend have configuration for [ESLint](https://eslint.org/). 
 Both backend and frontend use [airbnb-config](https://github.com/airbnb/javascript) (defined in .eslintrc file). It's also possible to use some other configuration, or add rules directly to `.eslintrc` file.
 
 ### Run lint in command line
-It's highly recommended to use ESLint in editor, but if you want to run lint in command line, run (in backend or frontend):
+It's highly recommended to use ESLint in editor, but if you want to run lint in command line, run (in backend or frontend, in a docker container or locally):
 ```npm run lint```
 
 ## Building in Travis
@@ -64,13 +68,15 @@ When project exists in github, you can activate it in Travis CI
     ```
 * Push your changes to "build branch", and travis will start the build process. 
 ### Build process
-* Travis builds project according to `.travis.yml` file. There is specified which nodejs version should be used, what other services does it need (docker) and which branch it builds.
-* `script`-phase defines what should be done in travis. In this example project, it  
+* Travis builds project according to `.travis.yml`. There is specified which language should be used, what other services does it need (docker) and which branch it builds.
+* `script`-step defines what should be done in travis. In this example project, it  
     * runs ESLint for backend, 
     * builds project with docker-compose 
     * runs backend tests with docker-compose
-    * prepares frontend bundle for heroku deployment. [Webpack](https://webpack.js.org/) is used for this.  
+    * prepares frontend bundle for heroku deployment. [Webpack](https://webpack.js.org/) is used for this. 
+* `deploy`-step defines where the app should be deployed.        
 If any of these steps results in an error, build fails and app will not be deployed.
+
 
 ## Preparation for Heroku deployment
 In order to get travis to deploy the app to heroku, do the following steps
