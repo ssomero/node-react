@@ -1,6 +1,8 @@
 # node-react with travis and heroku
 Example template for node-react app that can be built in Travis CI and deployed to Heroku. In local development app is running in docker containers.  
 
+[Koa](http://koajs.com/) is used for backend, [react](https://reactjs.org/) for frontend.
+
 ## Prequisites
 * [docker](https://docs.docker.com/)
 * [docker-compose](https://docs.docker.com/compose/)
